@@ -6,13 +6,13 @@
 </head>
 <body>
 	<header>
-		<button id = "reveal">Send an Image!</button>
+		<button class = 'post' id = "reveal">Send an Image!</button>
 		<div id = 'imgForm'>
 			<form id = "hue">
 				<input type = 'text' id = 'menu'>
 				<input type = 'text' id = 'drop'>
 			</form>
-			<button class = 'submit' id = 'stuff'>Save</button>
+			<button class = 'submit post' id = 'stuff'>Save</button>
 		</div>
 	</header>
 
@@ -30,6 +30,14 @@
 		</div>
 	</script>
 	<div class = "error">You must enter a valid image</div>
+
+	<script type = 'text/template' id = 'commentTemplate'>
+
+	</script>
+
+	<script type = 'text/template' id = 'likeTemplate'>
+
+	</script>
 
 	<script type="text/javascript" src = 'bower_components/jquery/dist/jquery.min.js'></script>
 	<script type="text/javascript" src = 'bower_components/underscore/underscore-min.js'></script>
