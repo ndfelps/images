@@ -1,37 +1,45 @@
-var imageItem = Backbone.Model.extend({
-	defaults: {
-		image: null,
-		caption: false,
-		visible: true,
-		likes: null
-	},
-	urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/',
-	idAttribute: '_id'
+var $ = require('jquery');
+var _ = require('underscore');
+var Backbone = require('backbone');
+Backbone.$ = $;
 
-});
-var likeItem = Backbone.Model.extend({
-	defaults: {
-		numOf: 0,
-		usersLiked: []
-	},
-	urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/',
-	idAttribute: '_id'
-});
-var commentItem = Backbone.Model.extend({
-	defaults: {
-		text: null,
-		userPosted: null,
-		likes: null
-	},
-	urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/',
-	idAttribute: '_id'
-});
 
-var userItem = Backbone.Model.extend({
-	defaults: {
-		name: null,
-		password: null
+module.exports = Backbone.Model.extend({
+		imageItem: {
+			defaults: {
+				image: null,
+				caption: false,
+				visible: true,
+				likes: null,
+				badge: null
+			},
+			urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/',
+			idAttribute: '_id'
+		}
+	likeItem: {
+		defaults: {
+			numOf: 0,
+			usersLiked: []
+		},
+		urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/',
+		idAttribute: '_id'
 	},
-	urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/',
-	idAttribute: '_id'
+	commentItem: {
+		defaults: {
+			text: null,
+			userPosted: null,
+			likes: null
+		},
+		urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/',
+		idAttribute: '_id'
+	},
+
+	userItem: {
+		defaults: {
+			name: null,
+			password: null
+		},
+		urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/',
+		idAttribute: '_id'
+	}
 });

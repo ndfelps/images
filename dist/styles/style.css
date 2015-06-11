@@ -5,7 +5,7 @@ body {
 header {
 	background-color: rgb(22, 143, 203);
 	padding: 15px;
-	margin-bottom: 5px;
+	margin-bottom: 15px;
 }
 img {
 	width: 500px;
@@ -17,7 +17,7 @@ div {
 .imgHolder {
 	padding: 15px;
 	background-color: lightgrey;
-	width: 75%;
+	width: 600px;
 	margin-left: auto;
 	margin-right: auto;
 	border-radius: 8px;

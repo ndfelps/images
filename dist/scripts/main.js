@@ -1,3 +1,10 @@
+var $ = require('jquery');
+var _ = require('underscore');
+var Backbone = require('backbone');
+Backbone.$ = $;
+var imageCollection = require('./collections/imagecollection.js');
+var imageItem.imageItem = require('./models/imagemodel.js');
+
 $(document).ready(function() {
 	var imageList = new imageCollection();
 	imageList.fetch();
@@ -53,7 +60,6 @@ $(document).ready(function() {
 
 	function subPush (e) {
 		if(event.keyCode === 13) {
-			// e.preventDefault();
 			var pic = $('#menu').val();
 			if(pic !== '' && (pic.substring(0, 8) === 'https://' || pic.substring(0, 7) === 'http://')) {
 				var newImage = new imageItem({
