@@ -6,37 +6,63 @@
 </head>
 <body>
 	<header>
-		<button class = 'post' id = "reveal">Send an Image!</button>
-		<div id = 'imgForm'>
-			<form id = "hue">
-				<input type = 'text' id = 'menu'>
-				<input type = 'text' id = 'drop'>
-			</form>
-			<button class = 'submit post' id = 'stuff'>Save</button>
+		<div id = 'topNav'>
+			<a href = '#log'>Log In</a>
+			<a href = '#feed'>Home</a>
+			<a href = '#logout' id = 'logout'>Log Out</a>
+		</div>
+		<div id = 'subForm'>
+			<button class = 'post' id = "reveal">Send an Image!</button>
+			<div id = 'imgForm'>
+				<form id = "hue">
+					<input type = 'text' id = 'menu'>
+					<input type = 'text' id = 'drop'>
+				</form>
+				<button class = 'submit post' id = 'stuff'>Save</button>
+			</div>
 		</div>
 	</header>
 
+	<div id = "login" class = 'page'>
+		<h2>Log In...</h2>
+		<form>
+			<input type = 'text' id = 'username' placeholder = 'Username'>
+			<input type = 'password' id = 'password' placeholder = 'Password'>
+			<button class = 'btn-primary' id = 'logButton'>Log In</button>
+		</form>
+		<h2>...or create an account!</h2>
+		<form>
+			<input type = 'text' placeholder = 'Username' id = 'signUser'>
+			<input type = 'password' placeholder = 'Password' id = 'userPass'>
+			<button class = 'btn-primary' id = 'signButton'>Sign Up!</button>
+		</form>
+	</div>
 
-	<div id = "list">
+	<div id = "list" class = 'page'>
 		
 	</div>
 
 	<script type = 'text/template' id = "imageTemplate">
 		<div class = 'imgHolder'>
+			<div></div>
 			<img src = <%= image %>>
 			<div>
 				<%= caption %>
 			</div>
+			<form class = commentSec>
+				<input type = 'text' class = 'commentBox'>
+				<button class = 'btn-primary'>Submit</button>
+		</form>
 		</div>
 	</script>
 	<div class = "error">You must enter a valid image</div>
 
 	<script type = 'text/template' id = 'commentTemplate'>
+		<form id = commentSec>
+			<input type = 'text' class = 'commentBox'>
+			<button class = 'btn-primary'>
 
-	</script>
-
-	<script type = 'text/template' id = 'likeTemplate'>
-
+		</form>
 	</script>
 
 	<script type="text/javascript" src = "scripts/all.js"></script>

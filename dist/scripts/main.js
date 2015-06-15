@@ -3,10 +3,18 @@ var _ = require('underscore');
 var Backbone = require('backbone');
 Backbone.$ = $;
 var imageCollection = require('./collections/imagecollection.js');
-var imageItem.imageItem = require('./models/imagemodel.js');
+var imageItem = require('./models/imagemodel.js');
+var commentCollection = require('./collections/commentcollection.js');
+var commentItem = require('./models/commentmodel.js');
+var likeCollection = require('./collections/likecollection.js');
+var likeItem = require('./models/likemodel.js');
+var userCollection = require('./collections/usercollection.js');
+var userItem = require('./models/usermodel.js');
 
 $(document).ready(function() {
 	var imageList = new imageCollection();
+	var userList = new imageCollection();
+	userList.fetch();
 	imageList.fetch();
 
 	var builder = _.template($('#imageTemplate').html());
@@ -27,6 +35,27 @@ $(document).ready(function() {
 		} else {
 			err();
 		}
+	});
+
+	$('#signButton').on('click', function(e) {
+		e.preventDefault();
+		console.log('??');
+		var name = $('#signUser').val();
+		var pass = $('#signPass').val();
+		if(name !== '' && pass !== '') {
+			var newUser = new userItem({
+				name: $('#signUser').val(),
+				password: $('#signPass').val()
+			});
+			$('#signUser').val('');
+			$('#signPass').val('');
+			$('#login').hide();
+			userList.add(newUser);
+			newUser.save();
+		} else {
+			err();
+		}
+
 	});
 	$('#menu').on('keyup', subPush);
 	$('#drop').on('keyup', subPush);

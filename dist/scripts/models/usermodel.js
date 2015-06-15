@@ -6,12 +6,9 @@ Backbone.$ = $;
 
 module.exports = Backbone.Model.extend({
 	defaults: {
-		image: null,
-		caption: false,
-		visible: true,
-		likes: null,
-		badge: null
+		name: null,
+		password: null
 	},
-	urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/images',
+	urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/users',
 	idAttribute: '_id'
 })

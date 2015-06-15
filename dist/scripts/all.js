@@ -12643,21 +12643,74 @@ var _ = require('underscore');
 var Backbone = require('backbone');
 Backbone.$ = $;
 var imageItem = require('../models/imagemodel.js');
+var userItem = require('../models/usermodel.js');
+var commentItem = require('../models/commentmodel.js');
+var likeItem = require('../models/likemodel.js');
+
+module.exports = Backbone.Collection.extend({
+	model: commentItem,
+	url: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/comments'
+});
+},{"../models/commentmodel.js":9,"../models/imagemodel.js":10,"../models/likemodel.js":11,"../models/usermodel.js":12,"backbone":1,"jquery":2,"underscore":3}],5:[function(require,module,exports){
+var $ = require('jquery');
+var _ = require('underscore');
+var Backbone = require('backbone');
+Backbone.$ = $;
+var imageItem = require('../models/imagemodel.js');
+var userItem = require('../models/usermodel.js');
+var commentItem = require('../models/commentmodel.js');
+var likeItem = require('../models/likemodel.js');
 
 module.exports = Backbone.Collection.extend({
 	model: imageItem,
-	url: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/'
+	url: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/images'
 })
-},{"../models/imagemodel.js":6,"backbone":1,"jquery":2,"underscore":3}],5:[function(require,module,exports){
+},{"../models/commentmodel.js":9,"../models/imagemodel.js":10,"../models/likemodel.js":11,"../models/usermodel.js":12,"backbone":1,"jquery":2,"underscore":3}],6:[function(require,module,exports){
+var $ = require('jquery');
+var _ = require('underscore');
+var Backbone = require('backbone');
+Backbone.$ = $;
+var imageItem = require('../models/imagemodel.js');
+var userItem = require('../models/usermodel.js');
+var commentItem = require('../models/commentmodel.js');
+var likeItem = require('../models/likemodel.js');
+
+module.exports = Backbone.Collection.extend({
+	model: likeItem,
+	url: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/likes'
+});
+},{"../models/commentmodel.js":9,"../models/imagemodel.js":10,"../models/likemodel.js":11,"../models/usermodel.js":12,"backbone":1,"jquery":2,"underscore":3}],7:[function(require,module,exports){
+var $ = require('jquery');
+var _ = require('underscore');
+var Backbone = require('backbone');
+Backbone.$ = $;
+var imageItem = require('../models/imagemodel.js');
+var userItem = require('../models/usermodel.js');
+var commentItem = require('../models/commentmodel.js');
+var likeItem = require('../models/likemodel.js');
+
+module.exports = Backbone.Collection.extend({
+	model: userItem,
+	url: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/users'
+});
+},{"../models/commentmodel.js":9,"../models/imagemodel.js":10,"../models/likemodel.js":11,"../models/usermodel.js":12,"backbone":1,"jquery":2,"underscore":3}],8:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
 Backbone.$ = $;
 var imageCollection = require('./collections/imagecollection.js');
 var imageItem = require('./models/imagemodel.js');
+var commentCollection = require('./collections/commentcollection.js');
+var commentItem = require('./models/commentmodel.js');
+var likeCollection = require('./collections/likecollection.js');
+var likeItem = require('./models/likemodel.js');
+var userCollection = require('./collections/usercollection.js');
+var userItem = require('./models/usermodel.js');
 
 $(document).ready(function() {
 	var imageList = new imageCollection();
+	var userList = new imageCollection();
+	userList.fetch();
 	imageList.fetch();
 
 	var builder = _.template($('#imageTemplate').html());
@@ -12678,6 +12731,27 @@ $(document).ready(function() {
 		} else {
 			err();
 		}
+	});
+
+	$('#signButton').on('click', function(e) {
+		e.preventDefault();
+		console.log('??');
+		var name = $('#signUser').val();
+		var pass = $('#signPass').val();
+		if(name !== '' && pass !== '') {
+			var newUser = new userItem({
+				name: $('#signUser').val(),
+				password: $('#signPass').val()
+			});
+			$('#signUser').val('');
+			$('#signPass').val('');
+			$('#login').hide();
+			userList.add(newUser);
+			newUser.save();
+		} else {
+			err();
+		}
+
 	});
 	$('#menu').on('keyup', subPush);
 	$('#drop').on('keyup', subPush);
@@ -12728,7 +12802,7 @@ $(document).ready(function() {
 	}
 });
 
-},{"./collections/imagecollection.js":4,"./models/imagemodel.js":6,"backbone":1,"jquery":2,"underscore":3}],6:[function(require,module,exports){
+},{"./collections/commentcollection.js":4,"./collections/imagecollection.js":5,"./collections/likecollection.js":6,"./collections/usercollection.js":7,"./models/commentmodel.js":9,"./models/imagemodel.js":10,"./models/likemodel.js":11,"./models/usermodel.js":12,"backbone":1,"jquery":2,"underscore":3}],9:[function(require,module,exports){
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
@@ -12736,41 +12810,60 @@ Backbone.$ = $;
 
 
 module.exports = Backbone.Model.extend({
-		defaults: {
-			image: null,
-			caption: false,
-			visible: true,
-			likes: null,
-			badge: null
-		},
-		urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/',
-		idAttribute: '_id'
-	// likeItem: Backbone.Model.extend({
-	// 	defaults: {
-	// 		numOf: 0,
-	// 		usersLiked: []
-	// 	},
-	// 	urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/',
-	// 	idAttribute: '_id'
-	// }),
-	// commentItem: Backbone.Model.extend({
-	// 	defaults: {
-	// 		text: null,
-	// 		userPosted: null,
-	// 		likes: null
-	// 	},
-	// 	urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/',
-	// 	idAttribute: '_id'
-	// }),
-
-	// userItem: Backbone.Model.extend({
-	// 	defaults: {
-	// 		name: null,
-	// 		password: null
-	// 	},
-	// 	urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/',
-	// 	idAttribute: '_id'
-	// }),
+	defaults: {
+		text: null,
+		userPosted: null,
+		likes: null
+	},
+	urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/comments',
+	idAttribute: '_id'
 });
+},{"backbone":1,"jquery":2,"underscore":3}],10:[function(require,module,exports){
+var $ = require('jquery');
+var _ = require('underscore');
+var Backbone = require('backbone');
+Backbone.$ = $;
 
-},{"backbone":1,"jquery":2,"underscore":3}]},{},[5]);
+
+module.exports = Backbone.Model.extend({
+	defaults: {
+		image: null,
+		caption: false,
+		visible: true,
+		likes: null,
+		badge: null
+	},
+	urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/images',
+	idAttribute: '_id'
+})
+},{"backbone":1,"jquery":2,"underscore":3}],11:[function(require,module,exports){
+var $ = require('jquery');
+var _ = require('underscore');
+var Backbone = require('backbone');
+Backbone.$ = $;
+
+
+module.exports = Backbone.Model.extend({
+	defaults: {
+		numOf: 0,
+		usersLiked: []
+	},
+	urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/likes',
+	idAttribute: '_id'
+})
+},{"backbone":1,"jquery":2,"underscore":3}],12:[function(require,module,exports){
+var $ = require('jquery');
+var _ = require('underscore');
+var Backbone = require('backbone');
+Backbone.$ = $;
+
+
+module.exports = Backbone.Model.extend({
+	defaults: {
+		name: null,
+		password: null
+	},
+	urlRoot: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/users',
+	idAttribute: '_id'
+})
+},{"backbone":1,"jquery":2,"underscore":3}]},{},[8]);

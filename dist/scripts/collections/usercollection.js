@@ -8,6 +8,6 @@ var commentItem = require('../models/commentmodel.js');
 var likeItem = require('../models/likemodel.js');
 
 module.exports = Backbone.Collection.extend({
-	model: imageItem,
-	url: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/images'
-})
+	model: userItem,
+	url: 'http://tiny-pizza-server.herokuapp.com/collections/theWaitressespt2/users'
+});
